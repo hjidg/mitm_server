@@ -8,8 +8,8 @@
 #### 40080 http proxy, need auth with username and password of login page
 #### 40082 webpage
 #### some useful http proxy app: shadowrocket(ios) proxydroid(android) swithyomega(chrome)
-![image](https://github.com/HanEightTurtle/mitm_server/tree/master/IMG/login.png)
-![image](https://github.com/HanEightTurtle/mitm_server/tree/master/IMG/user.png)
+![image](https://github.com/HanEightTurtle/mitm_server/raw/master/IMG/login.png)
+![image](https://github.com/HanEightTurtle/mitm_server/raw/master/IMG/user.png)
 # 
 ## Add new addons
 #### If u have any other ck needed to capture, just follow samples under folder 'addons'.
