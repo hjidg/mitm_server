@@ -204,7 +204,7 @@ def update_table(appdata,temp_folder,scope,username):
     newdata = temp2newdata(temp_folder,username,pin['nc'],pin['nm'],pin['np'])
     for item in newdata.keys():
         appdata[item] = newdata[item]
-    table = [[item[0],item[1][0]['_status']] for item in appdata.items()]
+    table = [[item[0],item[1][0].get('_status')] for item in appdata.items()]
     with use_scope(scope,clear=True):
         put_table(table,header=['app','status'])
 # 保存抓到的toml
@@ -240,13 +240,14 @@ def task(toml_folder,account_path,all_data_path,addon_folder,temp_folder,qlconf_
     '''
     '''
     lock,account = get_account(path=account_path)
+    @defer_call
+    def on_close():
+        if lock=='0':
+            release_lock(path=account_path)
     if lock=='0':
         info = login_info(lock,account)
         username = info.get('username')
         password = info.get('password')
-        @defer_call
-        def on_close():
-            release_lock(path=account_path)        
         # 点击注册
         if info.get('action')=='signup':
             add_account(username,password,account_path,toml_folder)
