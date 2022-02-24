@@ -2,13 +2,15 @@
 ## How to install
 #
 #### pip install -r requirements.txt
+#### mkdir tomls
+#### mkdir temp
+#### mkdir .mitmproxy
 #### mitmdump (generate cert at /root/.mitmproxy)
 #### \cp -rf /root/.mitmproxy/* .mitmproxy/
 #### then copy cert to phone and trust it
 #### go to qinglong settings-->appsetting and save it to ql/qlconf.toml
-####    
-#### python main.py  
-#### ps -aux | grep "python main.py"
+#### 
+#### nohup python main.py  &
 #### default port: 
 #### 40080 http proxy, need auth with username and password of login page
 #### 40082 webpage

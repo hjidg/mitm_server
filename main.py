@@ -148,7 +148,8 @@ def user_page(username,password,toml_folder,addon_folder,temp_folder,all_data_pa
     @defer_call
     def on_close():
         m.shutdown()
-        release_lock(path=account_path)    
+        release_lock(path=account_path)
+        clear_path(temp_folder)
     # 打印log
     with use_scope('log'):
         put_text('Log: ')
@@ -243,6 +244,7 @@ def task(toml_folder,account_path,all_data_path,addon_folder,temp_folder,qlconf_
     def on_close():
         if lock=='0':
             release_lock(path=account_path)
+            clear_path(temp_folder)
     if lock=='0':
         info = login_info(lock,account)
         username = info.get('username')
