@@ -37,13 +37,12 @@ def add_account(username,password,account_path='account.csv',toml_folder='tomls'
     '''
     '''
     with open(account_path,'a+') as f:
-        fcntl.flock(f.fileno(),fcntl.LOCK_EX)
         writer = csv.writer(f)
         w = writer.writerow((username,password))
     with open(f'{toml_folder}/{username}.toml','w') as f:
-        fcntl.flock(f.fileno(),fcntl.LOCK_EX)
+        f.write('\n')
     with open(f'{toml_folder}/{username}.fixtoml','w') as f:
-        fcntl.flock(f.fileno(),fcntl.LOCK_EX)
+        f.write('\n')
 def release_lock(path='account.csv'):
     '''
     '''

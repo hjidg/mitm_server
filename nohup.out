@@ -1,0 +1,49 @@
+Exception in thread Http2SingleStreamLayer-1:
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/net/http/encoding.py", line 67, in decode
+    decoded = custom_decode[encoding](encoded)
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/net/http/encoding.py", line 152, in decode_gzip
+    return gfile.read()
+  File "/opt/conda/lib/python3.9/gzip.py", line 300, in read
+    return self._buffer.read(size)
+  File "/opt/conda/lib/python3.9/gzip.py", line 487, in read
+    if not self._read_gzip_header():
+  File "/opt/conda/lib/python3.9/gzip.py", line 435, in _read_gzip_header
+    raise BadGzipFile('Not a gzipped file (%r)' % magic)
+gzip.BadGzipFile: Not a gzipped file (b'T6')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/threading.py", line 954, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http2.py", line 722, in run
+    layer()
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http.py", line 203, in __call__
+    if not self._process_flow(flow):
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http.py", line 374, in _process_flow
+    get_response()
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http.py", line 359, in get_response
+    self.send_request_headers(f.request)
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http2.py", line 392, in wrapper
+    result = func(self, *args, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http2.py", line 612, in send_request_headers
+    raise e
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/proxy/protocol/http2.py", line 606, in send_request_headers
+    end_stream=(False if request.content or request.trailers or request.stream else True),
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/net/http/message.py", line 134, in get_content
+    content = encoding.decode(self.raw_content, ce)
+  File "/opt/conda/lib/python3.9/site-packages/mitmproxy/net/http/encoding.py", line 76, in decode
+    raise ValueError("{} when decoding {} with {}: {}".format(
+ValueError: BadGzipFile when decoding b'T6CdbEJd with 'gzip': BadGzipFile("Not a gzipped file (b'T6')")
+ERROR:pywebio.session.base:Error
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/pywebio/session/threadbased.py", line 254, in run
+    callback(event['data'])
+  File "/opt/conda/lib/python3.9/site-packages/pywebio/output.py", line 801, in click_callback
+    return onclick[btn_idx]()
+  File "/root/pguoguo/mitm-server-thread/main.py", line 207, in update_table
+    table = [[item[0],item[1][0]['_status']] for item in appdata.items()]
+  File "/root/pguoguo/mitm-server-thread/main.py", line 207, in <listcomp>
+    table = [[item[0],item[1][0]['_status']] for item in appdata.items()]
+KeyError: '_status'
